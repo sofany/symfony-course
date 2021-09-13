@@ -82,8 +82,23 @@ Création d'une api public pour les articles
 
 > symfony console make:serializer:normalizer
 
+    public function normalize($object, $format = null, array $context = []): array
+    {
+        return [
+            'id' => $object->getId(),
+            'title' => $object->getTitle(),
+            'content' => $object->getContent(),
+        ];
+    }
+
 > symfony console make:controller
 
+    public function index(ArticleRepository $articleRepository, NormalizerInterface $normalizer): JsonResponse
+    {
+        return new JsonResponse(
+            ['results' => $normalizer->normalize($articleRepository->findAll())]
+        );
+    }
 Api Doc
 
 > composer require nelmio/api-doc-bundle -W
