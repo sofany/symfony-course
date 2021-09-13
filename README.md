@@ -105,9 +105,10 @@ Api Doc
 
 Exercise
 
+- Ajouter une photo dans l'article
+
 - Ajouter de la validation sur les articles
-  - tous les champs sont obligatoires
-  - username: min 2 et max 20 caractères
+  - title et content sont obligatoires
   - content: min 2 et max 1500 caractères
   - blacklister des mots dans le contenu
 
