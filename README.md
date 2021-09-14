@@ -169,11 +169,26 @@ Ajouter la propriété author lié à l'entité User
 
     $user2 = new User();
     $user2->setUsername('user_2');
-    $user2->setPassword($this->passwordHasher->hashPassword($user1, 'the_new_password'));
+    $user2->setPassword($this->passwordHasher->hashPassword($user2, 'the_new_password'));
     $user2->setRoles(['ROLE_USER']);
     $manager->persist($user2);
 
     $article->setAuthor( $i % 2 === 0 ? $user2 : $user1);
+
+> symfony console doctrine:fixtures:load
+
+Ajouter la propriété apiToken dans l'entité User
+
+> symfony console make:entity User
+
+> symfony console make:migration
+
+> symfony console doctrine:migrations:migrate
+
+    //ArticleFixtures.php
+    $user1->setApiToken('token_1');
+
+    $user2->setApiToken('token_2');
 
 > symfony console doctrine:fixtures:load
 
