@@ -25,6 +25,7 @@ services:
       - ./app:/var/www/app
     depends_on:
       - database
+      - maildev
 
   nginx:
     container_name: nginx
@@ -37,3 +38,12 @@ services:
     depends_on:
       - php
       - database
+      - maildev
+
+  maildev:
+    image: maildev/maildev
+    container_name: maildev
+    command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
+    ports:
+      - "8081:80"
+    restart: always
