@@ -244,3 +244,5 @@ Faire un endpoint /api/articles/{id} visible que par l'auteur
 Faire une page de login pour l'admin
 
 Ajouter le Reset Password
+
+Création d'un article avec l'auteur courant
