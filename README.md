@@ -246,3 +246,21 @@ Faire une page de login pour l'admin
 Ajouter le Reset Password
 
 Création d'un article avec l'auteur courant
+
+
+
+Exercise:
+
+Création d'un site pour ajouter des photos/gifs
+
+- création d'une entité image: id, title, source
+- la route "/" affiche toutes les images
+- la route "/images/new" ajoute une nouvelle image
+  - validation du titre
+    - non vide
+    - minimum 2 et maximum 50 caractères
+    - ne pas autoriser des mots invalides ex: toto
+- la route "/images/{id}" affiche l'image correspondant à l'id
+- ajouter une api (format json) "/api/images/random" qui affiche une image de façon aléatoire
+- ajouter la suppression d'une image que pour les utilisateurs "admin"
+
