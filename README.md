@@ -103,6 +103,7 @@ Création d'une api public pour les articles
 Api Doc
 
 > composer require nelmio/api-doc-bundle -W
+> composer require symfony/asset
 
 Exercise
 
