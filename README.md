@@ -114,7 +114,7 @@ Exercise
   - content: min 2 et max 1500 caractères
   - blacklister des mots dans le contenu
 
-- Afficher les deux derniers commentaires dans le endpoint '/api/articles'
+- Afficher les deux derniers commentaires dans le endpoint '/api/article'
 
 
 Ajouter l'entité User
@@ -151,7 +151,7 @@ Ajouter un firewall admin dans security.yaml
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
 
-Changer la route /articles => /admin/articles
+Changer la route /articles => /admin/article
 
 Ajouter la propriété author lié à l'entité User
 
@@ -230,38 +230,22 @@ Ajouter un firewall api dans security.yaml
 
 Tester que l'utilisateur est bien connecté
 
-    // ajouter cette ligne dans la méthode /api/articles
-    dump($this->getUser());
-
 > curl -H "X-AUTH-TOKEN: token_2"  http://localhost:8080/api/articles
 
 Vérifier dans le profiler 
 
 > http://localhost:8080/_profiler/empty/search/results?limit=5
 
+Faire un endpoint /api/article/{id} visible que par l'auteur
 
-Faire un endpoint /api/articles/{id} visible que par l'auteur
+Faire une page de login pour l'admin les routes '/admin'
 
-Faire une page de login pour l'admin
+> symfony console make:auth
 
 Ajouter le Reset Password
 
+> symfony console make:reset-password
+
+> http://localhost:8081
+
 Création d'un article avec l'auteur courant
-
-
-
-Exercise:
-
-Création d'un site pour ajouter des photos/gifs
-
-- création d'une entité image: id, title, source
-- la route "/" affiche toutes les images
-- la route "/images/new" ajoute une nouvelle image
-  - validation du titre
-    - non vide
-    - minimum 2 et maximum 50 caractères
-    - ne pas autoriser des mots invalides ex: toto
-- la route "/images/{id}" affiche l'image correspondant à l'id
-- ajouter une api (format json) "/api/images/random" qui affiche une image de façon aléatoire
-- ajouter la suppression d'une image que pour les utilisateurs "admin"
-
