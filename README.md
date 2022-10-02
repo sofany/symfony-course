@@ -279,3 +279,17 @@ Consommer une api externe (https://symfony-course.free.beeceptor.com/cities)
 
     Request : http://localhost:8080/cities/Yport
     Response : {"country":"FR","name":"Yport","lat":"49.73716","lng":"0.31537"}
+
+
+Exercice d'évaluation :
+- Ajouter une route "/api/article/random" qui renvoie un article au hasard
+- Ajouter en argument de la commande "app:visualize-city" le nom de la ville pour visualiser uniquement la ville
+- Améliorer le validateur BannedWord, les mots à bannir sont initialisés lors de la création de la "Constraint"
+  - ex: new BannedWord(words: ['test', 'tata'])
+- Tester la méthode "normalize" d'ArticleNormalizer
+
+Bonus:
+- Créer un nouvel utilisateur avec le rôle "ROLE_MODERATOR" qui peut accéder aux routes "/admin" mais ne peut pas supprimer d'article
+- Améliorer le validateur BannedWord, les mots à bannir sont récupérés via une api (https://symfony-course.free.beeceptor.com/banned-words)
+
+Envoyer votre projet (sans le dossier vendor) à l'adresse : sofany.ong@edu.gobelins.fr
