@@ -151,7 +151,7 @@ Ajouter un firewall admin dans security.yaml
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
 
-Changer la route /articles => /admin/article
+Changer la route /article => /admin/article
 
 Ajouter la propriété author lié à l'entité User
 
@@ -238,7 +238,7 @@ Vérifier dans le profiler
 
 Faire un endpoint /api/article/{id} visible que par l'auteur
 
-Faire une page de login pour l'admin les routes '/admin'
+Faire une page de login pour l'admin sur les routes '/admin'
 
 > symfony console make:auth
 
@@ -249,3 +249,33 @@ Ajouter le Reset Password
 > http://localhost:8081
 
 Création d'un article avec l'auteur courant
+
+Création d'un test automatique avec phpunit
+
+> composer require --dev phpunit/phpunit 
+
+> https://phpunit.readthedocs.io/fr/latest/
+
+Tester la méthode supportsNormalization du normalizer ArticleNormalizer
+
+> enlever la dépendance ObjectNormalizer d'ArticleNormalizer
+
+    class ArticleNormalizerTest extends TestCase
+    {
+        private ArticleNormalizer $normalizer;
+    
+        public function setUp(): void
+        {
+            $this->normalizer = new ArticleNormalizer();
+        }
+    }
+
+Consommer une api externe (https://symfony-course.free.beeceptor.com/cities)
+
+- Ajouter une nouvelle route /cities/{cityName}
+- Récupérer les informations de la ville
+
+> composer require symfony/http-client
+
+    Request : http://localhost:8080/cities/Yport
+    Response : {"country":"FR","name":"Yport","lat":"49.73716","lng":"0.31537"}
