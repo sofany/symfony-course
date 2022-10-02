@@ -151,7 +151,7 @@ Ajouter un firewall admin dans security.yaml
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
 
-Changer la route /articles => /admin/article
+Changer la route /article => /admin/article
 
 Ajouter la propriété author lié à l'entité User
 
@@ -238,7 +238,7 @@ Vérifier dans le profiler
 
 Faire un endpoint /api/article/{id} visible que par l'auteur
 
-Faire une page de login pour l'admin les routes '/admin'
+Faire une page de login pour l'admin sur les routes '/admin'
 
 > symfony console make:auth
 
@@ -249,3 +249,48 @@ Ajouter le Reset Password
 > http://localhost:8081
 
 Création d'un article avec l'auteur courant
+
+Création d'un test automatique avec phpunit
+
+> composer require --dev phpunit/phpunit 
+
+> https://phpunit.readthedocs.io/fr/latest/
+
+Tester la méthode supportsNormalization du normalizer ArticleNormalizer
+
+> enlever la dépendance ObjectNormalizer d'ArticleNormalizer
+
+    class ArticleNormalizerTest extends TestCase
+    {
+        private ArticleNormalizer $normalizer;
+    
+        public function setUp(): void
+        {
+            $this->normalizer = new ArticleNormalizer();
+        }
+    }
+
+Consommer une api externe (https://symfony-course.free.beeceptor.com/cities)
+
+- Ajouter une nouvelle route /cities/{cityName}
+- Récupérer les informations de la ville
+
+
+    Request : http://localhost:8080/cities/Yport
+    Response : {"country":"FR","name":"Yport","lat":"49.73716","lng":"0.31537"}
+
+> composer require symfony/http-client
+
+Création d'une commande symfony qui liste toutes les villes de l'api avec une mise en forme lisible
+
+- exemple de nom de commande "app:visualize-city"
+
+
+    --------- -------------------- ---------- -----------
+    Country   Name                 Latitude   Longitude
+    --------- -------------------- ---------- -----------
+    FR        Peyrat-le-Château    45.81376   1.7726
+    FR        Blaye                45.12764   -0.66225
+    FR        Zonza                41.74934   9.17082
+    FR        Zimmersheim          47.72079   7.38847
+    FR        Zillisheim           47.69604   7.29736
